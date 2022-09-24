@@ -1,0 +1,31 @@
+<div class="content">
+  <div class="header">
+    <button></button>
+    <button (click)="showAddImage = true">Add images</button>
+  </div>
+  <div class="list">
+    <div *ngIf="images.length === 0">
+      There are no images registered.
+    </div>
+    <div class="grid">
+      <div class="grid-item" *ngFor="let image of images | paginate: {
+        itemsPerPage: 20,
+        currentPage: page,
+        totalItems: totalItems }">
+        <div class="grid-content">
+          <img width="150" height="150" [src]="getImagePath(image.imageName)" alt="">
+          <span>
+            {{ image.imageName.split('.')[0] }}
+          </span>
+        </div>
+        <i class="far fa-trash-alt" title="Remover" (click)="delete(image)"></i>
+      </div>
+    </div>
+    <div class="pagination">
+      <pagination-controls class="custom-pagination" (pageChange)="changePage($event)"
+        [responsive]="true"></pagination-controls>
+    </div>
+  </div>
+</div>
+<app-add-image *ngIf="showAddImage" (closeAddImage)="closeAddImage($event)"></app-add-image>
+<app-loader *ngIf="showLoader"></app-loader>

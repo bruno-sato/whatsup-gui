@@ -1,0 +1,35 @@
+<app-loader *ngIf="showLoader"></app-loader>
+<div class="content">
+  <div class="header">
+    <h1>Users</h1>
+  </div>
+  <div class="list">
+    <ul>
+      <li *ngFor="let user of users | paginate: {
+        itemsPerPage: 20,
+        currentPage: page,
+        totalItems: totalItems }" [className]="user.activated ? '' : 'banned'">
+        <div class="info" (click)="goToDetails(user.id)">
+          <div>Name: {{ user.username }}</div>
+          <div class="email">Email: {{ user.email }}</div>
+        </div>
+        <div class="controls">
+          <div class="button-action star" (click)="setUserAdmin(user.id)" title="Set administrator">
+            <i class="fas fa-star"></i>
+          </div>
+          <div class="button-action fail" (click)="inactivate(user.id)" title="Inactivate" *ngIf="user.activated">
+            <i class="fas fa-ban"></i>
+          </div>
+          <div class="button-action success" (click)="activateUser(user.id)" title="Activate" *ngIf="!user.activated">
+            <i class="fas fa-check-circle"></i>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div class="pagination">
+      <pagination-controls
+        (pageChange)="changePage($event)"
+        [responsive]="true"></pagination-controls>
+    </div>
+  </div>
+</div>

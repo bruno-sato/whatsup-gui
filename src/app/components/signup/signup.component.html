@@ -1,0 +1,32 @@
+<app-loader *ngIf="showLoader"></app-loader>
+<div class="panel">
+  <div class="login-form">
+    <div class="header">
+      <img src="../../../assets/logo_whatsup.svg" width="150" height="105" alt="What's up school logo">
+      <div>
+        <a routerLink="/login" routerLinkActive="active">Login</a>
+        <a routerLink="/signup" routerLinkActive="active">Sign up</a>
+      </div>
+    </div>
+    <div class="border-gradient">
+      <div class="content">
+        <h1>Sign up</h1>
+        <h4>Sign up to access the exercises</h4>
+        <form [formGroup]="formSignUp">
+          <input type="text" name="name"
+            placeholder="Nome" formControlName="name">
+          <input type="email" name="email"
+            placeholder="E-mail" formControlName="email">
+          <input type="password" name="password"
+            placeholder="Senha" formControlName="password">
+          <button (click)="signup($event)">
+            Cadastrar
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="bg-image">
+    <img src="../../../assets/login-bg-image.webp" alt="">
+  </div> -->
+</div>

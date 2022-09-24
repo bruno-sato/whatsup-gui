@@ -1,0 +1,23 @@
+<div class="bg-fade">
+  <div class="list">
+    <div *ngIf="images.length === 0">
+      There are no images registered.
+    </div>
+    <div class="grid">
+      <div class="grid-item" *ngFor="let image of images | paginate: {
+        itemsPerPage: 20,
+        currentPage: page,
+        totalItems: totalItems }" [ngClass]="{'active': selectedItem.id === image.id}" (click)="selectItem(image)">
+        {{ image.imageName.split('.')[0] }}
+      </div>
+    </div>
+    <div class="pagination">
+      <pagination-controls class="custom-pagination" (pageChange)="changePage($event)"
+        [responsive]="true"></pagination-controls>
+    </div>
+    <div class="buttons">
+      <button class="default-btn secondary-btn" (click)="close(false)">Cancel</button>
+      <button class="default-btn primary-btn" (click)="select()">Select</button>
+    </div>
+  </div>
+</div>

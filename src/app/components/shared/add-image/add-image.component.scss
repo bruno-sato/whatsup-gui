@@ -1,0 +1,17 @@
+.bg-fade {
+  align-items: center;
+}
+.add-image {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  > div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 25px;
+  }
+}

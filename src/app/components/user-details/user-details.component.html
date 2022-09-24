@@ -1,0 +1,88 @@
+<app-loader *ngIf="showLoader"></app-loader>
+<div class="content">
+  <div class="container" *ngIf="user">
+    <div class="row">
+      <div class="col-12 header">
+        <h1>{{ user.username }}</h1>
+      </div>
+    </div>
+    <div class="row answers">
+      <div class="col-m-6 col-sm-12 modules">
+        <div>
+          <h3>Modules</h3>
+          <button data-toggle="modal" data-target="#exampleModal">Manage Modules</button>
+        </div>
+        <div class="modules-list--resume">
+          <span *ngIf="!user.modules">No information</span>
+          <ul class="list-group" *ngIf="user.modules">
+            <li class="list-group-item d-flex justify-content-between align-items-center"
+              *ngFor="let module of user.modules">
+              {{ module.title }}
+              <span class="badge badge-primary badge-pill" *ngIf="module.pivot && module.pivot.complete">
+                {{ module.pivot.complete }}
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- <div class="col-6 questions">
+        <div>
+          <h3>Answered questions</h3>
+        </div>
+        <div>
+          <span *ngIf="!answeredQuestions">No information</span>
+        </div>
+      </div> -->
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h1>User Answers</h1>
+          <canvas baseChart
+            [data]="pieChartData"
+            [labels]="pieChartLabels"
+            [chartType]="pieChartType"
+            [options]="pieChartOptions"
+            [colors]="pieChartColors"
+            [legend]="pieChartLegend">
+          </canvas>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="exampleModal" class="modal" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create Module</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <span *ngIf="!modules">There are no registered modules</span>
+        <div class="modules-list"
+          infiniteScroll
+          [infiniteScrollDistance]="1"
+          [infiniteScrollThrottle]="10"
+          [infiniteScrollUpDistance]="1.5"
+          [scrollWindow]="!keepScroll"
+          (scrolled)="onScroll()">
+          <ul class="list-group" *ngIf="modules">
+            <li class="list-group-item d-flex justify-content-between align-items-center"
+              *ngFor="let module of modules">
+              <div class="pretty p-default" (click)="setModule(module.id)">
+                <input type="checkbox" [checked]="module.checked" />
+                <div class="state">
+                  <label>{{ module.title }}</label>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

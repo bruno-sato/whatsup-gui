@@ -1,0 +1,28 @@
+<div class="bg-fade">
+  <div>
+    <h3>Add a module</h3>
+    <form [formGroup]="formNewModule" (ngSubmit)="save()">
+      <div class="form-group">
+        <label for="moduleTitle">Title</label>
+        <input type="text" class="form-control" id="moduleTitle" formControlName="title">
+      </div>
+      <div class="form-group">
+        <label for="minQuestions">Number of questions required</label>
+        <input type="text" class="form-control" id="minQuestions" formControlName="minimun_questions">
+      </div>
+      <div class="form-group">
+        <label for="maxQuestions">Maximum of wrong questions</label>
+        <input type="text" class="form-control" id="maxQuestions" formControlName="max_wrong_questions">
+      </div>
+      <div class="form-group">
+        <label for="videoLink">Video link</label>
+        <input type="text" class="form-control" id="videLink" formControlName="video_link">
+      </div>
+      <div class="button-group">
+        <button class="default-btn secondary-btn" type="button" (click)="close(false)">Cancel</button>
+        <button class="default-btn primary-btn" type="submit">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+<app-loader *ngIf="showLoader"></app-loader>

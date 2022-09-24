@@ -1,0 +1,32 @@
+<div class="content container-fluid">
+  <div class="row module justify-content-md-center">
+    <div class="modules">
+      <div class="modules-item" *ngFor="let module of modules | orderBy: query; let i = index" (click)="answerQuestions(module, template)">
+        <div class="bar" [ngStyle]="{ 'width': module.progressBar }" [ngClass]="module.status"></div>
+        <div class="module-index">
+          {{ i+1 }}
+        </div>
+        <div class="module-body" [ngClass]="module.status">
+          <div class="module-title">
+            {{ module.title }}
+          </div>
+          <div class="module-progress">
+            {{ module.progress }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title">Do you want to try again?</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="closeModal(template)">No</button>
+    <button type="button" class="btn btn-primary" (click)="restartModule(template)">Yes</button>
+  </div>
+</ng-template>

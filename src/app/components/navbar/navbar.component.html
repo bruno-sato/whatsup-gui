@@ -1,0 +1,75 @@
+<nav class="wpp-navbar">
+  <div class="logo">
+    <img src="../../../assets/logotipo.svg" alt="What's Up school logo" (click)="goHome()">
+    <img src="../../../assets/logo_whatsup.svg" width="250" height="250" alt="What's up school logo" (click)="goHome()">
+  </div>
+  <div class="mobile-navigation">
+    <div class="menu">
+      <a class="fas fa-bars" data-toggle="collapse" href="#collapseExample" role="button"></a>
+    </div>
+  </div>
+  <div class="collapse" id="collapseExample" *ngIf="!user.isAdmin">
+    <div class="list-group">
+      <a class="list-group-item list-group-item-action" (click)="logout($event)">
+        Logout
+      </a>
+    </div>
+  </div>
+  <div class="collapse" id="collapseExample" #collapseAdmin *ngIf="user.isAdmin" data-toggle="collapse">
+    <div class="list-group">
+      <a class="list-group-item list-group-item-action" routerLinkActive="active"
+        routerLink="admin" (click)="navigateTo()">
+        Home
+      </a>
+      <a class="list-group-item list-group-item-action" routerLinkActive="active"
+        routerLink="questions" (click)="navigateTo()">
+        Questions
+      </a>
+      <a class="list-group-item list-group-item-action" routerLinkActive="active"
+        routerLink="modules"(click)="navigateTo()">
+        Modules
+      </a>
+      <a class="list-group-item list-group-item-action" routerLinkActive="active"
+        routerLink="users" (click)="navigateTo()">
+        Users
+      </a>
+      <a class="list-group-item list-group-item-action" routerLinkActive="active"
+        routerLink="images" (click)="navigateTo()">
+        Images
+      </a>
+      <a class="list-group-item list-group-item-action" (click)="logout($event)">
+        Logout
+      </a>
+    </div>
+  </div>
+  <div class="navigation">
+    <div>
+      <a class="fas fa-home" title="Home"
+        routerLink="admin" routerLinkActive="active"
+        *ngIf="user.isAdmin"></a>
+    </div>
+    <div>
+      <a class="fas fa-book-open" title="Questions"
+        routerLink="questions" routerLinkActive="active"
+        *ngIf="user.isAdmin"></a>
+    </div>
+    <div>
+      <a class="fas fa-boxes" title="Modules"
+        routerLink="modules" routerLinkActive="active"
+        *ngIf="user.isAdmin"></a>
+    </div>
+    <div>
+      <a class="fas fa-user-graduate" title="Users"
+        routerLink="users" routerLinkActive="active"
+        *ngIf="user.isAdmin"></a>
+    </div>
+    <div>
+      <a class="far fa-images" title="Images"
+        routerLink="images" routerLinkActive="active"
+        *ngIf="user.isAdmin"></a>
+    </div>
+    <div>
+      <button (click)="logout($event)">Logout</button>
+    </div>
+  </div>
+</nav>

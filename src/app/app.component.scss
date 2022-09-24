@@ -1,0 +1,27 @@
+.help-button {
+  height: 60px;
+  width: 60px;
+  position: fixed;
+  bottom: 35px;
+  right: 35px;
+  z-index: 99999;
+  background-color: #25d366;
+  border-radius: 30px;
+  text-align: center;
+  padding: 5px;
+  cursor: pointer;
+  box-shadow: 6px 6px 5px -3px rgba(0, 0, 0, 0.75);
+  > a {
+    font-size: 50px;
+    color: #fff;
+    &:hover {
+      text-decoration: none;
+      color: #fff;
+    }
+  }
+}
+@media screen and (max-width: 425px) {
+  .help-button {
+    bottom: 20px;
+  }
+}

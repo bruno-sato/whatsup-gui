@@ -1,0 +1,5 @@
+<app-navbar *ngIf="isLoged"></app-navbar>
+<router-outlet></router-outlet>
+<div class="help-button" *ngIf="showHelp && isLoged" title="Do you need help? Click here!">
+  <a class="fab fa-whatsapp" href="https://api.whatsapp.com/send?phone=5519983461633" target="_black"></a>
+</div>

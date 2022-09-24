@@ -1,0 +1,34 @@
+<app-loader *ngIf="showLoader"></app-loader>
+<div class="content">
+  <div *ngIf="questionModule">
+    <div class="header">
+      <button class="default-btn" *ngIf="!edit" routerLink="/modules"><i class="fas fa-arrow-left"></i></button>
+      <button class="default-btn edit" *ngIf="!edit" (click)="showModalAdd=true">Edit</button>
+      <button class="default-btn primary-btn" *ngIf="edit" (click)="save()">Save</button>
+      <button class="default-btn" *ngIf="edit" (click)="edit=false">Cancel</button>
+      <button class="default-btn primary-btn" *ngIf="!edit" (click)="showAddQuestion = true">Create question</button>
+    </div>
+    <div>
+      <h3>Title: </h3><h3 *ngIf="!edit"> {{ questionModule.title }}</h3>
+      <input type="text" class="form-control" *ngIf="edit" [(ngModel)]="title">
+      <h6>Created questions:</h6>
+      <ul>
+        <li *ngFor="let question of questionModule.questions">
+          <div>
+            <span>{{ question.title }}</span>
+            <span>Type: {{ getQuestionType(question.type) }}</span>
+          </div>
+          <span>
+            <i class="far fa-edit" title="Edit"
+              (click)="editQuestion(question)"></i>
+            <i class="far fa-trash-alt" title="Delete"
+              (click)="deleteQuestion(question, questionModule)"></i>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<app-add-module *ngIf="showModalAdd" [questionModule]="questionModule" (closeAddModule)="closeModalAdd($event)"></app-add-module>
+<app-add-question *ngIf="showAddQuestion" [module]="questionModule.id" (closeAddQuestion)="closeAddQuestion($event)" 
+  [question]="selectedQuestion"></app-add-question>

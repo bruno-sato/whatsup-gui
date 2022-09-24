@@ -1,0 +1,38 @@
+.list {
+  width: 50%;
+  margin: 0 auto;
+  padding: .75em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  > div {
+    color: #707070;
+    text-align: center;
+  }
+  .grid {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    .grid-item {
+      cursor: pointer;
+      border: 1px solid #ccc;
+      padding: 5px;
+      border-radius: 5px;
+      margin-right: 10px;
+      margin-bottom: 5px;
+      &.active {
+        background-color: #0288D1;
+        color: #fff;
+        border: 1px solid #0077B8;
+      }
+    }
+  }
+}
+.pagination {
+  justify-content: center;
+}
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}

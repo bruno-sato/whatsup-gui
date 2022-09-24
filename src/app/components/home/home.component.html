@@ -1,0 +1,34 @@
+<div class="content">
+  <div class="container">
+    <div class="row grid-cards">
+      <div class="info-card" *ngIf="userCount">
+        <div class="card-header">
+          Active students
+        </div>
+        <div class="card-content">
+          {{ userCount.active }}
+        </div>
+      </div>
+      <div class="info-card" *ngIf="userCount">
+        <div class="card-header">
+          Inactive students
+        </div>
+        <div class="card-content">
+            {{ userCount.inative }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <h1>Users with more attempts</h1>
+      <canvas baseChart
+        [data]="pieChartData"
+        [labels]="pieChartLabels"
+        [chartType]="pieChartType"
+        [options]="pieChartOptions"
+        [colors]="pieChartColors"
+        [legend]="pieChartLegend">
+      </canvas>
+    </div>
+  </div>
+</div>
+<app-add-module *ngIf="showModalAdd" (closeAddModule)="closeModalAdd($event)"></app-add-module>

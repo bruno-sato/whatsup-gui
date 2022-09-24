@@ -1,0 +1,51 @@
+@import '~pretty-checkbox/src/pretty-checkbox.scss';
+
+.content {
+    padding: 25px 0;
+  .container {
+    background-color: #fff;
+  }
+  .header {
+    width: 100%;
+    h1 {
+      margin: 0;
+    }
+  }
+  .list-group {
+    width: 100%;
+  }
+  .modules {
+    padding: .75em;
+    > div {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      button {
+        border: none;
+        background-color: #fff;
+        cursor: pointer;
+        &:nth-child(2) {
+          color: #00E676;
+        }
+      }
+    }
+  }
+  .questions {
+    padding: .75em;
+    > div {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+.answers {
+  .modules-list--resume {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+}
+.modules-list {
+  height: 20rem;
+  overflow-y: auto;
+}

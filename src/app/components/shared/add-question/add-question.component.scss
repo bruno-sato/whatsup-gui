@@ -1,0 +1,78 @@
+.bg-fade {
+  overflow-y: auto;
+  > div {
+    width: 50%;
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    position: absolute;
+    top: 25px;
+  }
+  form {
+    margin-top: 20px;
+    > div {
+      margin: 0;
+      margin-bottom: 10px;
+      &.add-image {
+        button {
+          background-color: #fff;
+          border: 1px solid #ccc;
+          width: 100%;
+          border-radius: 5px;
+          padding: 5px;
+          cursor: pointer;
+        }
+      }
+      &.alternatives {
+        > div  {
+          display: flex;
+          justify-content: space-between;
+          > input {
+            width: 80%;
+            display: inline-block;
+          }
+          > button {
+            background-color: #fff;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            padding: .375rem .75rem;
+          }
+        }
+      }
+      &:last-child {
+        margin-top: 15px;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+}
+.list {
+  width: 50%;
+  margin: 0 auto;
+  padding: .75em;
+  background-color: #fff;
+  > div {
+    color: #707070;
+    text-align: center;
+  }
+  .grid {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    .grid-item {
+      border: 1px solid #ccc;
+      padding: 5px;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+  }
+}
+.pagination {
+  justify-content: center;
+}
+img {
+  width: 150px;
+}

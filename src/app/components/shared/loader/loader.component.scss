@@ -1,0 +1,14 @@
+.bg-fade {
+  > div {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    border-radius: 5px;
+    i {
+      font-size: 3rem;
+    }
+  }
+}

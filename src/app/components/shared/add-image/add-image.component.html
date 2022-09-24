@@ -1,0 +1,10 @@
+<div class="bg-fade">
+  <div class="add-image">
+    <input type="file" multiple #fileInput (change)="onFileChange($event)">
+    <div>
+      <button class="default-btn secondary-btn" (click)="close(false)">Cancel</button>
+      <button class="default-btn primary-btn" (click)="save()">Save</button>
+    </div>
+  </div>
+</div>
+<app-loader *ngIf="showLoader"></app-loader>

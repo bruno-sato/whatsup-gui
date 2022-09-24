@@ -1,0 +1,81 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~ngx-toastr/toastr-bs4-alert';
+
+// Default values for colors, margins and paddings
+@import './var.scss';
+
+body {
+  font-family: 'Open Sans', sans-serif !important;
+  overflow: hidden;
+}
+.content {
+  overflow-x: auto;
+  height: calc(100vh - 60px);
+  background-color: $backgroud-content;
+  .header {
+    width: 50%;
+    margin: 0 auto;
+    padding: .75em;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    h1 {
+      display: inline-block;
+      margin-left: .50em;
+    }
+  }
+  .pagination {
+    display: flex;
+    justify-content: center;
+  }
+  .ngx-pagination {
+    padding: 0;
+  }
+}
+.wpp-modal {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  background-color: $backgroud-modal;
+  padding-top: 1.75em;
+  .dialog {
+    background-color: #fff;
+  }
+}
+.bg-fade {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: $backgroud-fade;
+}
+.default-btn {
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+  &.primary-btn {
+    color: $success-color;
+  }
+  &.secondary-btn{
+    color: $default-color;
+  }
+}
+.fa-trash-alt {
+  cursor: pointer;
+  color: $fail-color;
+}
+.border-gradient {
+  padding: 5px;
+  background-image: $default-gradient;
+}

@@ -1,0 +1,80 @@
+@import '../../../var.scss';
+
+.content {
+  padding: 25px 0;
+  button {
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+    &:nth-child(1) {
+      color: #A5A5A5;
+    }
+  }
+}
+.list {
+  width: 50%;
+  margin: 0 auto;
+  padding: .75em;
+  background-color: #fff;
+  > div {
+    color: #707070;
+    text-align: center;
+  }
+  ul {
+    padding: 0 15px;
+    li {
+      list-style: none;
+      cursor: pointer;
+      border: 1px solid #F0F3F6;
+      padding: 5px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      border-left: 4px solid $success-color;
+      &.banned {
+        border-left: 4px solid #fc4b4b;
+      }
+      .info {
+        width: 100%;
+        > div {
+          white-space: nowrap;
+          width: 100%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+    .controls {
+      display: flex;
+      align-items: center;
+      .button-action {
+        width: 30px;
+        &.fail {
+          color: #fc4b4b;
+        }
+        &.success {
+          color: $success-color;
+        }
+        &.star {
+          color: #ecd300;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 425px) {
+  .content {
+    .header {
+      width: 90%;
+    }
+    .list {
+      width: 90%;
+      li {
+        .info {
+          width: 80%;
+        }
+      }
+    }
+  }
+}

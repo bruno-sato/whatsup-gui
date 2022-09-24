@@ -1,0 +1,85 @@
+<div class="bg-fade">
+  <div>
+    <h3>Add a question</h3>
+    <form [formGroup]="formQuestion">
+      <div class="form-group">
+        <label>Title:</label>
+        <input type="text" class="form-control" placeholder="Title"
+          formControlName="title">
+      </div>
+      <div class="form-group">
+        <label for="question">Question:</label>
+        <textarea type="text" class="form-control" name="question"
+          id="question" placeholder="Question" formControlName="question"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="quetion-time">Question time (seconds)</label>
+        <input type="text" class="form-control" name="question-time"
+          id="question-time" placeholder="Question time" formControlName="answerTime">
+      </div>
+      <div>
+        <label>Type:</label>
+        <select class="form-control" formControlName="type" aria-placeholder="Tipo"
+          (change)="changeType($event)">
+          <option value="1">Dissertation</option>
+          <option value="2">Image and text relationship</option>
+          <option value="3">Word organization</option>
+          <option value="4">Alternative</option>
+          <option value="5">Sound listening</option>
+        </select>
+      </div>
+      <div class="sound" *ngIf="type == 5">
+        <div class="form-group">
+          <label for="soundKey">Sound Link:</label>
+          <input type="text" class="form-control" name="soundKey" id="soundKey" placeholder="Sound link" formControlName="soundKey">
+        </div>
+        <div class="form-group">
+          <label for="soundAnswer">Answer:</label>
+          <textarea type="text" class="form-control" name="soundAndswer" id="soundAnswer" formControlName="answer"></textarea>
+        </div>
+      </div>
+      <div class="alternatives" *ngIf="type == 4">
+        Alternatives:
+        <ul>
+          <li *ngFor="let alternative of alternatives">
+            <span>
+              {{ alternative }}
+            </span>
+            <span>
+                <i class="far fa-trash-alt" title="Remover"
+                  (click)="removeAlternative(alternative)"></i>
+            </span>
+          </li>
+        </ul>
+        <div>
+          <input class="form-control" type="text" name="alternative"
+            placeholder="Adicione uma alternativa"
+            [(ngModel)]="alternative" [ngModelOptions]="{standalone: true}">
+          <button (click)="addAlternative()"><i class="fas fa-plus"></i></button>
+        </div>
+      </div>
+      <div *ngIf="type == 2 || type == 4" class="add-image">
+        <button (click)="selectImage = true">Select image</button>
+        <div *ngIf="image">Selected image:</div>
+        <img *ngIf="image"
+          (click)="selectImage(image)" [src]="getImagePath(image.imageName)" alt="">
+      </div>
+      <div *ngIf="type != 2 && type != 5">
+        <label>Answer:</label>
+        <input type="text" class="form-control" placeholder="Answer"
+          formControlName="answer">
+      </div>
+      <div *ngIf="type != 3 && type != 2 && type != 5">
+        <label>British answer: </label>
+        <input type="text" class="form-control" placeholder="Answer"
+          formControlName="britishAnswer">
+      </div>
+      <div>
+        <button class="default-btn secondary-btn" (click)="close(false)">Cancel</button>
+        <button class="default-btn primary-btn" (click)="save()">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+<app-loader *ngIf="showLoader"></app-loader>
+<app-select-image *ngIf="selectImage" (closeImageSelect)="closeImageSelect($event)"></app-select-image>

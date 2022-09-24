@@ -1,0 +1,92 @@
+<div class="content container-fluid">
+  <div class="row question-progress">
+    <div class="bar" [ngStyle]="{width: moduleProgress}"></div>
+    <div>
+      <div>
+        <div (click)="backToHome()">
+          <i class="fas fa-arrow-left"></i>
+        </div>
+      </div>
+      <div class="module-info">
+        <div>
+          {{ module.title }}
+        </div>
+        <div>
+          {{ answeredQuestions.length }} of {{ module.minimun_questions }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row answers-body">
+    <div class="answer" [ngClass]="{'success' : successAnswer === 1, 'wrong': successAnswer === 2}" *ngIf="selectedQuestion">
+      <div>
+        <div class="timer" [ngClass]="{'warning': answerTime < (selectedQuestion.answer_time*0.5), 'danger': answerTime < (selectedQuestion.answer_time*0.25)}">
+          <div [ngStyle]="{width: clockSize, height: clockSize}">
+            {{ answerTime }}
+          </div>
+        </div>
+        <div class="title">
+          {{ selectedQuestion.title }}
+        </div>
+        <div class="question">
+          {{ selectedQuestion.question }}
+        </div>
+        <div class="question-answer">
+          <div class="form-group" *ngIf="selectedQuestion.type === 1">
+            <textarea class="form-control" name="answer" id="answer" cols="10" rows="2" [(ngModel)]="dissertationAnswer"></textarea>
+          </div>
+          <div class="images" *ngIf="selectedQuestion.type === 2 && selectedQuestion.images">
+            <div *ngFor="let image of selectedQuestion.images.other"
+              [ngClass]="{'active': image.id === selectedImage?.id}">
+              <img
+                (click)="selectImage(image)" [src]="getImagePath(image.imageName)" alt="">
+            </div>
+          </div>
+          <div class="alternative" *ngIf="selectedQuestion.type === 4">
+            <div class="alternative-image" *ngIf="selectedQuestion.imagePath">
+              <img [src]="getImagePath(selectedQuestion.imagePath)" width="200" height="255">
+            </div>
+            <div class="option" *ngFor="let option of selectedQuestion.options"
+              [ngClass]="{ 'selected': selectedOption === option.option }"
+              (click)="selectOption(option.option)">
+              {{ option.option }}
+            </div>
+          </div>
+          <div class="phrase" *ngIf="selectedQuestion.type === 3">
+            <div class="phrase-answer">
+              <span>{{ getPrhaseAnswer() }}</span>
+            </div>
+            <div class="random-word">
+              <span *ngFor="let word of this.selectedQuestion.phrase"
+                [ngClass]="{'active': phraseAnswer.includes(word)}" (click)="selectWordToPhrase(word)">{{ word.prhase }}</span>
+            </div>
+          </div>
+          <!-- Questions with sound -->
+          <div *ngIf="selectedQuestion.type === 5" class="sound">
+            <audio id="audio" [src]="soundLink" #sound autoplay controls loop>
+            </audio>
+            <div class="form-group sound-answer">
+              <textarea class="form-control" cols="30" rows="5" [(ngModel)]="soundAnswer"></textarea>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="correctAnswer && successAnswer && selectedQuestion.type !== 2" class="show-correct-answer">
+          Correct answer was: {{ correctAnswer }}
+        </div>
+        <div *ngIf="correctAnswer && successAnswer && selectedQuestion.type === 2" class="show-correct-answer">
+          Correct answer was: <img [src]="getCorrectImagePath(correctAnswer)" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row controls" *ngIf="selectedQuestion" [ngClass]="{'success' : successAnswer === 1, 'wrong': successAnswer === 2}">
+    <div *ngIf="!successAnswer">
+      <button (click)="skipQuestion()">Skip</button>
+      <button (click)="checkQuestion()">Check</button>
+    </div>
+    <div *ngIf="successAnswer">
+      <span>{{ successAnswer === 1 ? 'Right answer' : 'Wrong answer' }}</span>
+      <button (click)="getNextQuestion()">Continue</button>
+    </div>
+  </div>
+</div>
