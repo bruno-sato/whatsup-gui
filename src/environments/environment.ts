@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  root: 'http://191.252.221.117:3333',
+  root: 'http://localhost:3333',
   imageRoot: 'http://191.252.221.117'
 };
 
